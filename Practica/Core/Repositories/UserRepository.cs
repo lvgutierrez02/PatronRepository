@@ -37,14 +37,51 @@ namespace Practica.Core.Repositories
 
         public override async Task<bool> Upsert(User entity) {
 
-            var existingUser = await dbSet.
+            try
+            {
+                var existingUser = await dbSet.
                 Where(x => x.UserId == entity.UserId).FirstOrDefaultAsync();
 
-            if (existingUser==null)
-            {
-                return await 
+                if (existingUser == null)
+                {
+                    return await Add(entity);
+                }
+                existingUser.FirstName = entity.FirstName;
+                existingUser.LastName = entity.LastName;
+                existingUser.Email = entity.Email;
+
+                return true;
+
             }
-            
+            catch (Exception ex)
+            {
+
+                _logger.LogError(ex, "{Repo} Upsert method error", typeof(UserRepository));
+                return false;
+            }
+        }
+
+        public override async Task<bool> Delete(Guid id) 
+        {
+
+            try
+            {
+                var exist = await dbSet.Where(x => x.UserId == id).FirstOrDefaultAsync();
+                if (exist != null) 
+                {
+                    dbSet.Remove(exist);
+                    return true;
+                }
+
+                return false;   
+                       
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} Delete method error", typeof(UserRepository));
+                return false;
+            }
+        
         }
     } 
 }
