@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Practica.Data;
+using Practica.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -47,7 +48,7 @@ namespace Practica.Core.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<bool> Add()
+        public Task<bool> Add(User user)
         {
             throw new NotImplementedException();
         }

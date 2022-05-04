@@ -19,26 +19,28 @@ namespace Practica
 {
     public class Startup
     {
+        //public Startup(IConfigurationBuilder configuration)
+        //{
+        //    Configuration = configuration;
+        //}
+
+        public IConfigurationBuilder Configuration { get; }
+
         public Startup(IConfigurationBuilder configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfigurationBuilder Configuration { get; }
-
-        public IConfigurationBuilder GetConfiguration()
-        {
-            return Configuration;
-        }
+       
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services, IConfigurationBuilder configuration)
+        public void ConfigureServices(IServiceCollection services)
         {
 
             //Conexión SQl Server
-            var conexion = configuration["ConnectionStrings:conexion_sqlServer"]; //Cadena de conexión
+         /*   var conexion = [];*/ //Cadena de conexión
             services.AddDbContext<AppDbContext>(option =>
-            option.UseSqlServer(conexion));
+            option.UseSqlServer("ConnectionStrings:conexion_sqlServer"));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
