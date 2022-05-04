@@ -60,7 +60,7 @@ namespace Practica.Controllers
             return Ok(users);
         }
 
-        [HttpPost("{UserId}")]
+        [HttpPatch("{UserId}")]
         public async Task<IActionResult> UpdateItem(Guid id, User user) 
         {
             if(id!=user.UserId)
