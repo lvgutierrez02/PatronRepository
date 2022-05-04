@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Practica.Data;
+using Practica.IConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,8 @@ namespace Practica
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Practica", Version = "v1" });
             });
+            //Adding the unit of work to the DI container
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
