@@ -83,7 +83,7 @@ namespace Practica.Controllers
             await _unitOfWork.Users.Delete(id);
             await _unitOfWork.CompleteAsync();  
 
-            return Ok(id);
+            return Ok(item);
         }
 
     }
