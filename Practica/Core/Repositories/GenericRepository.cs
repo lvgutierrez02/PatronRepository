@@ -18,6 +18,7 @@ namespace Practica.Core.Repositories
         {
             _context = context;
             _logger = logger;   
+            dbSet = context.Set<T>();
         }
 
         public virtual async Task<IEnumerable<T>> All()

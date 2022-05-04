@@ -8,7 +8,7 @@ namespace Practica.Core.Repositories
     {
         Task<IEnumerable<T>> All();
         Task<T> GetById(Guid id);
-        Task<bool> Add();
+        Task<bool> Add(Models.User user);
         Task<bool> Delete(Guid id);
         Task<bool> Upsert(T entity);
     }
